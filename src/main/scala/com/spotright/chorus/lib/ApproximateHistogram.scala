@@ -6,12 +6,13 @@ import com.spotright.common.lib.PairingHeap
 import com.spotright.chorus.lib.SListWalker.implicits._
 
 /**
-  * TODO
-  * 1. allow for counting into buckets. Given bucket range/bucket discriptions return counts in buckets.
-  * 1. allow for counting percentiles.  Given List percentiles return counts at percentile points.
+  * Build an approximate Histogram.
+  * Record a fixed number of Centroids merging the closest to make room for new values.
+  * Build trapazoids to get approximate bucket counts.
   *
   * @param pointCount Point at which new elements are merged
   * @param flushDirty How dirty the heap has to be to rebuild.
+  * @see https://metamarkets.com/2013/histograms/
   */
 class ApproximateHistogram(pointCount: Int, flushDirty: Double = 0.5) {
 
